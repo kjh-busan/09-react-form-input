@@ -10,23 +10,24 @@ const SimpleInput = (props) => {
     if (enteredNameIsValid) {
       console.log("Name Input is valid!");
     }
-  });
+  }, [enteredNameIsValid]);
 
-  const nameInputFocusHandler = () => {
-    setEnteredNamaIsValid(false);
+  const nameInputChangeHandler = (event) => {
+    setEnteredName(event.target.value);
+
+    if (event.target.value.trim() !== "" || null) {
+      setEnteredNamaIsValid(true);
+    }
+    console.log("enteredNameIsValid : ", enteredNameIsValid);
   };
 
   const nameInputBlurHandler = (event) => {
     setEnteredNameTouched(true);
 
     if (enteredName.trim() === "" || null) {
-      setEnteredNamaIsValid(true);
-      return;
+      setEnteredNamaIsValid(false);
     }
-  };
-
-  const nameInputChangeHandler = (event) => {
-    setEnteredName(event.target.value);
+    console.log("enteredNameIsValid : ", enteredNameIsValid);
   };
 
   const formSubmitHandler = (event) => {
@@ -35,21 +36,20 @@ const SimpleInput = (props) => {
     setEnteredNameTouched(true);
 
     if (enteredName.trim() === "" || null) {
-      setEnteredNamaIsValid(true);
+      setEnteredNamaIsValid(false);
       return;
     }
 
     setEnteredNamaIsValid(true);
 
     console.log(enteredName);
-    const enteredValue = nameInputRef.current.value;
-    console.log(enteredValue);
 
     setEnteredName("");
-    setEnteredNameTouched(false);
+    // setEnteredNameTouched(false);
   };
 
-  const nameInputIsInvalid = enteredNameIsValid && enterdNameTouched;
+  const nameInputIsInvalid = !enteredNameIsValid && enterdNameTouched;
+
   const nameInputCllasses = nameInputIsInvalid
     ? "form-control invalid"
     : "form-control";
@@ -64,10 +64,9 @@ const SimpleInput = (props) => {
           id="name"
           onChange={nameInputChangeHandler}
           onBlur={nameInputBlurHandler}
-          onFocus={nameInputFocusHandler}
           value={enteredName}
         />
-        {enteredNameIsValid && <p className="error-text">Name is not empty.</p>}
+        {nameInputIsInvalid && <p className="error-text">Name is not empty.</p>}
       </div>
       <div className="form-actions">
         <button>Submit</button>
