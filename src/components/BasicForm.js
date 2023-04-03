@@ -31,6 +31,18 @@ const BasicForm = (props) => {
     reset: resetEmailInput,
   } = useInput(isEmail);
 
+  const firstNameInputClasses = firstNameInputHasError
+    ? "form-control invalid"
+    : "form-control";
+
+  const lastNameInputClasses = lastNameInputHasError
+    ? "form-control invalid"
+    : "form-control";
+
+  const emailInputClasses = emailInputHasError
+    ? "form-control invalid"
+    : "form-control";
+
   return (
     <form>
       <div className="control-group">
