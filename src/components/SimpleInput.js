@@ -3,10 +3,15 @@ import { useEffect, useState } from "react";
 const SimpleInput = (props) => {
   const [enteredName, setEnteredName] = useState("");
   const [enterdNameTouched, setEnteredNameTouched] = useState(false);
-  // const [formIsValid, setFormIsValid] = useState(false);
+
+  const [entererdEmail, setEnteredEmail] = useState("");
+  const [enteredEmailTouched, setEnteredEmailTouched] = useState(false);
 
   const enteredNameIsValid = enteredName.trim() !== "";
   const nameInputIsInvalid = !enteredNameIsValid && enterdNameTouched;
+
+  const enteredEmailIsValid = entererdEmail.trim() !== "";
+  const EmailInputIsInvalid = !enteredEmailIsValid && enteredEmailTouched;
 
   let formIsValid = false;
 
@@ -18,8 +23,16 @@ const SimpleInput = (props) => {
     setEnteredName(event.target.value);
   };
 
+  const emailInputChangeHandler = (event) => {
+    setEnteredEmail(event.target.value);
+  };
+
   const nameInputBlurHandler = (event) => {
     setEnteredNameTouched(true);
+  };
+
+  const emailInputBlurHandler = (event) => {
+    setEnteredEmailTouched(true);
   };
 
   const formSubmitHandler = (event) => {
@@ -59,8 +72,8 @@ const SimpleInput = (props) => {
         <input
           type="email"
           id="email"
-          onChange={nameInputChangeHandler}
-          onBlur={nameInputBlurHandler}
+          onChange={emailInputChangeHandler}
+          onBlur={emailInputBlurHandler}
           value={enteredName}
         />
         {nameInputIsInvalid && (
