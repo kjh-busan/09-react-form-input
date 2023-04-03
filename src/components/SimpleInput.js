@@ -10,8 +10,9 @@ const SimpleInput = (props) => {
   const enteredNameIsValid = enteredName.trim() !== "";
   const nameInputIsInvalid = !enteredNameIsValid && enterdNameTouched;
 
-  const enteredEmailIsValid = enteredEmail.trim() !== "";
-  const EmailInputIsInvalid = !enteredEmailIsValid && enteredEmailTouched;
+  const enteredEmailIsValid = enteredEmail.includes("@");
+  const enteredEmailInputIsInvalid =
+    !enteredEmailIsValid && enteredEmailTouched;
 
   let formIsValid = false;
 
@@ -48,9 +49,16 @@ const SimpleInput = (props) => {
 
     setEnteredName("");
     setEnteredNameTouched(false);
+
+    setEnteredEmail("");
+    setEnteredEmailTouched(false);
   };
 
   const nameInputCllasses = nameInputIsInvalid
+    ? "form-control invalid"
+    : "form-control";
+
+  const emailInputCllasses = enteredEmailInputIsInvalid
     ? "form-control invalid"
     : "form-control";
 
@@ -67,7 +75,7 @@ const SimpleInput = (props) => {
         />
         {nameInputIsInvalid && <p className="error-text">Name is not empty.</p>}
       </div>
-      <div className={nameInputCllasses}>
+      <div className={emailInputCllasses}>
         <label htmlFor="name">Your E-Mail</label>
         <input
           type="email"
