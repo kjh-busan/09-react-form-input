@@ -53,52 +53,69 @@ const BasicForm = (props) => {
     ? "form-control invalid"
     : "form-control";
 
-  return (
-    <form>
-      <div className="control-group">
-        <div className={firstNameInputClasses}>
-          <label htmlFor="name">First Name</label>
+    const formSubmitHandler = (event) => {
+      event.preventdefault();
+
+      if (
+        !enteredFIrstNameIsValid ||
+        !enteredLastNameIsValid ||
+        !enteredEmailIsValid
+      )
+        return;
+
+      resetFirstNameInput();
+      resetLastNameInput();
+      resetEmailInput();
+    };
+
+    return (
+      <form onSubmit={formSubmitHandler}>
+        <div className="control-group">
+          <div className={firstNameInputClasses}>
+            <label htmlFor="name">First Name</label>
+            <input
+              type="text"
+              id="firstName"
+              value={enteredFirstName}
+              onChange={firstNameChangeHandler}
+              onBlur={firstNameBlurHandler}
+            />
+            {firstNameInputHasError && (
+              <p className="error-text">First Name has InValid.</p>
+            )}
+          </div>
+          <div className={lastNameInputClasses}>
+            <label htmlFor="name">Last Name</label>
+            <input
+              type="text"
+              id="lastName"
+              value={enteredLastName}
+              onChange={lastNameChangeHandler}
+              onBlur={lastNameBlurHandler}
+            />
+            {lastNameInputHasError && (
+              <p className="error-text">Last Name has InValid.</p>
+            )}
+          </div>
+        </div>
+        <div className={emailInputClasses}>
+          <label htmlFor="name">E-Mail Address</label>
           <input
-            type="text"
-            id="firstName"
-            value={enteredFirstName}
-            onChange={firstNameChangeHandler}
-            onBlur={firstNameBlurHandler}
+            type="email"
+            id="email"
+            value={enteredEmail}
+            onChange={emailChangeHandler}
+            onBlur={emailBlurHandler}
           />
-          {firstNameInputHasError && (
-            <p className="error-text">First Name has InValid.</p>
+          {emailInputHasError && (
+            <p className="error-text">Email has InValid.</p>
           )}
         </div>
-        <div className={lastNameInputClasses}>
-          <label htmlFor="name">Last Name</label>
-          <input
-            type="text"
-            id="lastName"
-            value={enteredLastName}
-            onChange={lastNameChangeHandler}
-            onBlur={lastNameBlurHandler}
-          />
-          {lastNameInputHasError && (
-            <p className="error-text">Last Name has InValid.</p>
-          )}
+        <div className="form-actions">
+          <button disabled={!formIsValid}>Submit</button>
         </div>
-      </div>
-      <div className={emailInputClasses}>
-        <label htmlFor="name">E-Mail Address</label>
-        <input
-          type="email"
-          id="email"
-          value={enteredEmail}
-          onChange={emailChangeHandler}
-          onBlur={emailBlurHandler}
-        />
-        {emailInputHasError && <p className="error-text">Email has InValid.</p>}
-      </div>
-      <div className="form-actions">
-        <button disabled={formIsValid}>Submit</button>
-      </div>
-    </form>
-  );
+      </form>
+    );
 };
 
 export default BasicForm;
