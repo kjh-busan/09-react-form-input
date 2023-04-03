@@ -4,13 +4,13 @@ const SimpleInput = (props) => {
   const [enteredName, setEnteredName] = useState("");
   const [enterdNameTouched, setEnteredNameTouched] = useState(false);
 
-  const [entererdEmail, setEnteredEmail] = useState("");
+  const [enteredEmail, setEnteredEmail] = useState("");
   const [enteredEmailTouched, setEnteredEmailTouched] = useState(false);
 
   const enteredNameIsValid = enteredName.trim() !== "";
   const nameInputIsInvalid = !enteredNameIsValid && enterdNameTouched;
 
-  const enteredEmailIsValid = entererdEmail.trim() !== "";
+  const enteredEmailIsValid = enteredEmail.trim() !== "";
   const EmailInputIsInvalid = !enteredEmailIsValid && enteredEmailTouched;
 
   let formIsValid = false;
@@ -74,7 +74,7 @@ const SimpleInput = (props) => {
           id="email"
           onChange={emailInputChangeHandler}
           onBlur={emailInputBlurHandler}
-          value={enteredName}
+          value={enteredEmail}
         />
         {nameInputIsInvalid && (
           <p className="error-text">E-Mail is not empty.</p>
