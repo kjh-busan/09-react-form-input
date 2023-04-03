@@ -37,17 +37,17 @@ const SimpleInput = (props) => {
     resetEmailInput();
   };
 
-  const nameInputCllasses = nameInputHasError
+  const nameInputClasses = nameInputHasError
     ? "form-control invalid"
     : "form-control";
 
-  const emailInputCllasses = emailInputHasError
+  const emailInputClasses = emailInputHasError
     ? "form-control invalid"
     : "form-control";
 
   return (
     <form onSubmit={formSubmitHandler}>
-      <div className={nameInputCllasses}>
+      <div className={nameInputClasses}>
         <label htmlFor="name">Your Name</label>
         <input
           type="text"
@@ -58,7 +58,7 @@ const SimpleInput = (props) => {
         />
         {nameInputHasError && <p className="error-text">Name is not empty.</p>}
       </div>
-      <div className={emailInputCllasses}>
+      <div className={emailInputClasses}>
         <label htmlFor="name">Your E-Mail</label>
         <input
           type="email"

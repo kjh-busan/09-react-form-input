@@ -34,18 +34,36 @@ const BasicForm = (props) => {
   return (
     <form>
       <div className="control-group">
-        <div className="form-control">
+        <div className={firstNameInputClasses}>
           <label htmlFor="name">First Name</label>
-          <input type="text" id="name" />
+          <input
+            type="text"
+            id="firstName"
+            value={enteredFirstName}
+            onChange={firstNameChangeHandler}
+            onBlur={firstNameBlurHandler}
+          />
         </div>
-        <div className="form-control">
+        <div className={lastNameInputClasses}>
           <label htmlFor="name">Last Name</label>
-          <input type="text" id="name" />
+          <input
+            type="text"
+            id="lastName"
+            value={enteredLastName}
+            onChange={lastNameChangeHandler}
+            onBlur={lastNameBlurHandler}
+          />
         </div>
       </div>
-      <div className="form-control">
+      <div className={emailInputClasses}>
         <label htmlFor="name">E-Mail Address</label>
-        <input type="text" id="name" />
+        <input
+          type="email"
+          id="email"
+          value={enteredEmail}
+          onChange={emailChangeHandler}
+          onBlur={emailBlurHandler}
+        />
       </div>
       <div className="form-actions">
         <button>Submit</button>
