@@ -11,12 +11,11 @@ const SimpleInput = (props) => {
   const nameInputIsInvalid = !enteredNameIsValid && enterdNameTouched;
 
   const enteredEmailIsValid = enteredEmail.includes("@");
-  const enteredEmailInputIsInvalid =
-    !enteredEmailIsValid && enteredEmailTouched;
+  const emailInputIsInvalid = !enteredEmailIsValid && enteredEmailTouched;
 
   let formIsValid = false;
 
-  if (enteredNameIsValid) {
+  if (enteredNameIsValid && enteredEmailIsValid) {
     formIsValid = true;
   }
 
@@ -58,7 +57,7 @@ const SimpleInput = (props) => {
     ? "form-control invalid"
     : "form-control";
 
-  const emailInputCllasses = enteredEmailInputIsInvalid
+  const emailInputCllasses = emailInputIsInvalid
     ? "form-control invalid"
     : "form-control";
 
@@ -84,7 +83,7 @@ const SimpleInput = (props) => {
           onBlur={emailInputBlurHandler}
           value={enteredEmail}
         />
-        {nameInputIsInvalid && (
+        {emailInputIsInvalid && (
           <p className="error-text">E-Mail is not empty.</p>
         )}
       </div>
