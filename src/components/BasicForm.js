@@ -54,7 +54,7 @@ const BasicForm = (props) => {
     : "form-control";
 
     const formSubmitHandler = (event) => {
-      event.preventdefault();
+      event.preventDefault();
 
       if (
         !enteredFIrstNameIsValid ||
@@ -63,6 +63,9 @@ const BasicForm = (props) => {
       )
         return;
 
+      console.log(
+        enteredFirstName + " " + enteredLastName + " : " + enteredEmail
+      );
       resetFirstNameInput();
       resetLastNameInput();
       resetEmailInput();
